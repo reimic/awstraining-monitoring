@@ -1,10 +1,10 @@
 resource "aws_iam_role" "ecs_monitoring_task_role" {
-  name = "backend-monitoring-ecs-task-role-${var.region}"
+  name = "backend-monitoring-ecs-task-role-${var.region}-v1"
   assume_role_policy = file("../../../policies/ecs-assume-role-policy.json")
 }
 
 resource "aws_iam_policy" "ecs_monitoring_task_role_policy" {
-  name = "backend-monitoring-ecs-task-role-${var.region}"
+  name = "backend-monitoring-ecs-task-role-${var.region}-v1"
   policy = file("../../../policies/ecs-monitoring-task-role-policy.json")
 }
 
@@ -14,7 +14,7 @@ resource "aws_iam_role_policy_attachment" "ecs_monitoring_task_role_attach" {
 }
 
 resource "aws_security_group" "sg_monitoring" {
-  description = "Controls direct access to monitoring applications instances"
+  description = "CoFntrols direct access to monitoring applications instances"
   vpc_id = var.vpc_id
   name = "sg_backend_monitoring"
 

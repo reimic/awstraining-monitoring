@@ -9,11 +9,11 @@ data "template_file" "service_template" {
 }
 
 data "aws_iam_role" "backend_ecs_role" {
-  name = "backend-ecs-task-role-${var.region}"
+  name = "backend-ecs-task-role-${var.region}-v1"
 }
 
 data "aws_iam_role" "backend_monitoring_ecs_role" {
-  name = "backend-monitoring-ecs-task-role-${var.region}"
+  name = "backend-monitoring-ecs-task-role-${var.region}-v1"
 }
 
 resource "aws_ecs_task_definition" "ecs_monitoring_task" {
