@@ -1,9 +1,9 @@
 data "aws_iam_role" "loadtest_ecs_role" {
-  name = "backend-ecs-task-role-${var.region}"
+  name = "backend-ecs-task-role-${var.region}-v1"
 }
 
 data "aws_iam_role" "loadtest_ecs_execution_role" {
-  name = "backend-ecs-execution-role-${var.region}"
+  name = "backend-ecs-execution-role-${var.region}-v1"
 }
 
 resource "aws_ecs_cluster_capacity_providers" "fargate_capacity_provider" {
