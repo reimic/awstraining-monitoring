@@ -1,9 +1,5 @@
 package com.awstraining.backend.business.measurements.controller;
 
-import static java.lang.System.currentTimeMillis;
-
-import java.util.List;
-
 import com.awstraining.backend.api.rest.v1.DeviceIdApi;
 import com.awstraining.backend.api.rest.v1.model.Measurement;
 import com.awstraining.backend.api.rest.v1.model.Measurements;
@@ -15,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+import static java.lang.System.currentTimeMillis;
 
 @RestController
 @RequestMapping("device/v1")
@@ -35,6 +35,7 @@ class DeviceController implements DeviceIdApi {
         service.saveMeasurement(measurementDO);
         return ResponseEntity.ok(measurement);
     }
+
     @Override
     public ResponseEntity<Measurements> retrieveMeasurements(final String deviceId) {
         LOGGER.info("Retrieving all measurements for device '{}'", deviceId);
@@ -44,6 +45,7 @@ class DeviceController implements DeviceIdApi {
                 .toList();
         final Measurements measurementsResult = new Measurements();
         measurementsResult.measurements(measurements);
+        LOGGER.info("Max measurement '{}'", measurements.stream().map(Measurement::getValue).max(Double::compareTo));
         return ResponseEntity.ok(measurementsResult);
     }
 
